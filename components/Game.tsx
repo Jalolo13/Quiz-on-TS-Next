@@ -13,7 +13,7 @@ interface Prop {
 
 const Game = ({ step, question, onClickStep, questions }: Prop) => {
   const percentage = Math.round((step / questions.length) * 100);
-  console.log(percentage);
+
   return (
     <>
       <div className={styles.progress}>

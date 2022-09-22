@@ -3,11 +3,15 @@ import Head from "next/head";
 import { useState } from "react";
 import Game from "../components/Game";
 import Result from "../components/Result";
+import { useTheme } from "../hooks/useTheme";
+
 import styles from "../styles/Home.module.scss";
 
 const Home: NextPage = () => {
   const [step, setStep] = useState(0);
   const [correct, setCorrect] = useState(0);
+  const [checked, setChecked] = useState<boolean>(false);
+  const { theme, setTheme } = useTheme();
 
   interface Types {
     title: string;
@@ -58,7 +62,13 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <label className={styles.switch}>
-        <input type="checkbox" />
+        <input
+          type="checkbox"
+          onChange={() => {
+            setChecked((prevState) => !prevState);
+            checked ? setTheme("light") : setTheme("dark");
+          }}
+        />
         <span className={styles.slider + " " + styles.round}></span>
       </label>
 
